@@ -1,0 +1,415 @@
+---
+import { getCollection } from 'astro:content';
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Component Imports
+import CallToAction from '../components/CallToAction.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+// Page section components
+import ContactCTA from '../components/ContactCTA.astro';
+import Skills from '../components/Skills.astro';
+
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection('work'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+				title="Hey, I'm Kevin 👋"
+				tagline="a creative frontend + backend Developer with an eye for design and a passion for code."
+				align="start"
+				>
+				<div class="roles">
+					<a href="https://shopify.dev/">
+							<img
+								alt="shopify"
+								class=""
+								width="40"
+								height="40"
+								src="/assets/shopify.png"
+							/>
+							<span>Shopify</span>
+					</a>
+					<!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
+						<img
+							alt="js"
+							class=""
+							width="40"
+							height="40"
+							src="/assets/js.png"
+						/>
+						JavaScript
+					</a> -->
+					<a href="https://nodejs.org/en/">
+						<img
+						alt="nodejs"
+						class=""
+						width="40"
+						height="40"
+						src="/assets/nodejs.png"
+						/>
+						NodeJS
+					</a>
+					<a href="https://github.com/">
+						<img
+						alt="github"
+						class=""
+						width="40"
+						height="40"
+						src="/assets/github.png"
+						/>
+						Git
+					</a>
+					<a href="https://alpinejs.dev/">
+						<img
+							alt="alpine"
+							class=""
+							width="40"
+							height="40"
+							src="/assets/alpine.png"
+						/>
+						Alpine
+					</a>
+					<a href="https://www.babylonjs.com/">
+						<img
+							alt="babylonjs"
+							class=""
+							width="40"
+							height="40"
+							src="/assets/babylon.png"
+						/>
+						BabylonJS
+					</a>
+					<a href="https://react.dev/">
+						<img
+							alt="babylonjs"
+							class=""
+							width="40"
+							height="40"
+							src="/assets/react.png"
+						/>
+						React
+					</a>
+					<a href="https://java.org/">
+						<img
+							alt="java"
+							class=""
+							width="30"
+							height="30"
+							src="/assets/java.png"
+						/>
+						Java
+					</a>
+				</div>
+				<div class="code-design bounce">Code 🤝 Design</div>
+				</Hero>
+				<img
+					alt="Kevin Gross"
+					class="portrait"
+					width="480"
+					height="620"
+					src="/assets/portrait.png"
+				/>
+			</header>
+
+			<Skills />
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section class="section with-background with-cta">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Projects 🖥️</h3>
+					<p>Take a look below at some of the projects a worked on recently. The range is from full shop-setups to redesign and 3D-configurator</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+
+				<div class="cta">
+					<CallToAction href="/work/">
+						Show All
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+				</div>
+			</section>
+
+			<section class="section with-background bg-variant">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Future 🌟</h3>
+					<p>
+						A few things on my mind that I want to work on in the future.
+					</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="small">
+						{
+							['Vue.js', 'Next.js', 'shadcn/ui'].map((brand) => (
+								<li class="mention-card">
+									<p>{brand}</p>
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.code-design{
+		align-self: self-end;
+		width: fit-content;
+		margin-right: -70px;
+		
+		padding: 5px 10px;
+		transform: rotate(10deg);
+		font-size: 2.5rem;
+		font-family: var(--font-brand);
+		color: white;
+		border: 1px solid var(--gray-800);
+	}
+
+	.roles img{
+		width: auto;
+		height: 30px;
+	}
+
+	.hero img.portrait {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	
+			.roles {
+				display: flex;
+				flex-direction: row;
+				justify-content: start;
+				align-items: center;
+				font-size: var(--text-md);
+				margin-top: 0.5rem;
+				display: flex;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.roles > a{
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				text-decoration: none;
+				color: white;
+				gap: 0.5rem;
+				border-radius:999rem;
+				border: 1px solid var(--gray-800);
+				padding: 10px 20px;
+				height: 60px;
+			}
+	
+			.roles > a:hover{
+				background: var(--gradient-subtle);
+				box-shadow: var(--shadow-sm);
+	
+			}
+
+			.code-design{
+				align-self: self-end;
+				width: fit-content;
+				margin-right: -10px;
+				margin-top: 0.25em0px;
+				padding: 5px 10px;
+				transform: rotate(10deg);
+				font-size: 1.5rem;
+				font-family: var(--font-brand);
+				color: white;
+				border: 1px solid var(--gray-800);
+			}
+	@media (min-width: 50em) {
+
+		.role img{
+			width: 40px;
+			height: 40px;
+		}
+
+		.roles > a{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: white;
+			gap: 0.5rem;
+			border-radius:999rem;
+			border: 1px solid var(--gray-800);
+			padding: 10px 20px;
+			height: 60px;
+		}
+
+		.code-design{
+			align-self: self-end;
+			width: fit-content;
+			margin-right: -70px;
+			margin-top: -40px;
+			padding: 5px 10px;
+			transform: rotate(10deg);
+			font-size: 2.5rem;
+			font-family: var(--font-brand);
+			color: white;
+			border: 1px solid var(--gray-800);
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 8fr 2fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.hero img.portrait {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: '';
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background:
+			url('/assets/backgrounds/noise.png') top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	@media (min-width: 50em) {
+		.mention-card {
+			border-radius: 1.5rem;
+			height: 9.5rem;
+		}
+	}
+</style>
