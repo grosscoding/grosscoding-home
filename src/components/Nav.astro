@@ -5,9 +5,9 @@ import type { iconPaths } from './IconPaths';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
-	{ label: 'Home', href: '/grosscoding-home' },
-	{ label: 'Work', href: '/grosscoding-home/work/' },
-	{ label: 'About', href: '/grosscoding-home/about/' },
+	{ label: 'Home', href: '/' },
+	{ label: 'Work', href: '/work' },
+	{ label: 'About', href: '/about' },
 ];
 
 /** Icon links to social media — edit these with links to your profiles! */
@@ -21,12 +21,12 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	<div class="menu-header">
 		<a href="/" class="site-title">
 			<img
-				alt="CrossCode Logo"
-				src="/grosscoding-home/assets/cross.png"
+				alt="grossCode Logo"
+				src="//assets/cross.png"
 				width="20"
 				height="20"
 			/>
-			crosscode
+			grosscode
 		</a>
 		<menu-button>
 			<template>
@@ -49,7 +49,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 								{
 									active:
 										Astro.url.pathname === href ||
-										(href !== '/' && Astro.url.pathname.startsWith(href)),
+										(href !== '//' && Astro.url.pathname.startsWith(href)),
 								},
 							]}
 							href={href}
