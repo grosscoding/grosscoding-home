@@ -1,12 +1,10 @@
 import { defineConfig } from 'astro/config';
-import node from "@astrojs/node";
+const SERVER_PORT = 3000;
 
 // https://astro.build/config
 export default defineConfig({
+server: { port: SERVER_PORT },
   site: 'https://grosscoding.github.io',
   base: '/grosscoding-home',
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  })
+  integrations: [sitemap()]   
 });
