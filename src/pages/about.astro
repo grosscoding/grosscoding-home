@@ -5,17 +5,17 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="About | Kevin Gross" description="About Kevin Gross Lorem Ipsum">
+<BaseLayout title="CV | Kevin Gross" description="About Kevin Gross">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+				title="My tech journey (CV) 👨‍💻"
+
 			>
 				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.jpg"
+					width="800"
+					height="500"
+					src="/assets/kevin.jpg"
 					alt="Kevin Gross at work with a colleague"
 				/>
 			</Hero>
@@ -24,35 +24,30 @@ import Hero from '../components/Hero.astro';
 				<h2 class="section-title">Background</h2>
 				<div class="content">
 					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
-						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
-					</p>
-					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
-					</p>
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
+						It all started with an HTML course in my 8th grade at school.
+						That's when I fell in love with the web and developed the will to learn more about it.
+						Computer science turned out to be more than my favorite subject in school.
+						From writing small scripts to complete repetitive tasks in games and browsers, I was always eager to learn more.
+						After my graduation, I started my journey as a web developer and have been working in the industry for over 5 years now.
 					</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<p>• Fritz-Erler-Gymnasium Pforzheim, Abitur 2017
+						• Profilfach Wirtschaftsinformatik, Focus on Java & Databases</p>
+						<p></p>
+					<p> • Dual Apprenticeship "Fachinformatiker Application Development", apollon GmbH in Pforzheim</p>
+						<p>Application Development with Java, Git and SQL Databases</p>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title">Work</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<p>💻 Junior Software-Developer, apollon, Pforzheim <div>• 3 years of experience in Java, Git, Spring-Framework and Databases</div></p>
+					<p>💻 Fullstack-Web-Developer, digitalsprung, Birkenfeld <div>• 2 years of experience in Shopify, Javascript, NodeJS, Rest and Databases</div></p>
+					<p>...</p>
 				</div>
 			</section>
 		</main>
@@ -70,6 +65,8 @@ import Hero from '../components/Hero.astro';
 
 	img {
 		margin-top: 1.5rem;
+		width: 50%;
+		align-self: center;
 		border-radius: 1.5rem;
 		box-shadow: var(--shadow-md);
 	}
@@ -89,6 +86,13 @@ import Hero from '../components/Hero.astro';
 
 	.content {
 		grid-column: 2 / 4;
+		display: grid;
+		gap: 10px;
+	}
+
+	.content div{
+		width: 100%;
+		margin-left: 30px;
 	}
 
 	.content :global(a) {
